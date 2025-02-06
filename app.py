@@ -19,8 +19,20 @@ newegg_link = "https://www.newegg.com/p/pl?d=playstation+5+console"
 def newegg(driver):
     #Open the browser and navigate to a search engine
     driver.get(newegg_link)
+
+    #Find product listings
+    item_cell = '//div[contains(@class, "item-cell")]'
+    #Collect title and price (.// is for finding an element within item_cell)
+    item_name = './/a[contains(@class, "item-title")]'
+    item_price = './/li[contains(@class, "price-current")]'
+
     #Find the relevant listings
-    products = driver.find_elements(by = 'XPATH', value = )
+    products = driver.find_elements(By.XPATH, value = '//div[contains(@class, "item-cell")]')
+    
+    for x in products:
+        print(x.find_element(By.XPATH, value = './/a[contains(@class, "item-title")]').text)
+        print(x.find_element(By.XPATH, value = './/li[contains(@class, "price-current")]').text)
+
     #Prevents browser from closing immediately after opening 
     time.sleep(5)
 
